@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reproductor de Lista M3U</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Reproductor de Lista M3U</h1>
+    <input type="file" id="fileInput" accept=".m3u,m3u8,ts,mp4,mkv" />
+    <button id="loadButton">Cargar Lista de Reproducción</button>
+    
+    <div id="playlist">
+      <h2>Grupo 1</h2>
+      <div class="playlist-group" id="group1"></div>
+      
+      <h2>Grupo 2</h2>
+      <div class="playlist-group" id="group2"></div>
+    </div>
+    
+    <div id="playerContainer">
+      <video id="player" controls></video>
+    </div>
+
+    <script src="m3uStreamPlayer.js"></script>
+    <script>
+      var fileInput = document.getElementById('fileInput');
+      var loadButton = document.getElementById('loadButton');
+      var group1 = document.getElementById('group1');
+      var group2 = document.getElementById('group2');
+      var player = document.getElementById('player');
+
+      loadButton.addEventListener('click', function() {
+        var file = fileInput.files[0];
+        if (file) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var content = e.target.result;
+            var urls = content.trim().split('\n');
+            for (var i = 0; i < urls.length; i++) {
+              var url = urls[i].trim();
+              if (url) {
+                var item = document.createElement('div');
+                item.classList.add('playlist-item');
+                item.textContent = url;
+                item.addEventListener('click', function() {
+                  player.src = this.textContent;
+                  player.play();
+                });
+                
+                if (i < 5) {
+                  group1.appendChild(item);
+                } else {
+                  group2.appendChild(item);
+                }
+              }
+            }
+          }
+          reader.readAsText(file);
+        }
+      });
+    </script>
+  </body>
+</html>

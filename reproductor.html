@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reproductor de Lista M3U</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Reproductor de Lista M3U</h1>
+    <input type="file" id="fileInput" accept=".m3u" />
+    <button id="loadButton">Cargar Lista de Reproducción</button>
+    <div id="playlist"></div>
+    <div id="playerContainer">
+      <video id="player" controls></video>
+    </div>
+    <script src="m3uStreamPlayer.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

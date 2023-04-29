@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <style>
+      .shoe-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+        padding: 20px;
+      }
+      .shoe-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .shoe-name {
+        font-size: 20px;
+        margin-top: 10px;
+      }
+      .shoe-price {
+        font-size: 18px;
+        color: green;
+        margin-top: 10px;
+      }
+      .add-to-cart-button {
+        background-color: orange;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Zapatos Casuales</h1>
+    <div class="shoe-list">
+      <div class="shoe-item">
+        <img class="shoe-image" src="zapato1.jpeg" alt="Zapato 1">
+        <div class="shoe-name">Zapato 1</div>
+        <div class="shoe-price">$50</div>
+        <div class="add-to-cart-button" onclick="addToCart(1)">Agregar al carrito</div>
+      </div>
+      <div class="shoe-item">
+        <img class="shoe-image" src="zapato2.jpeg" alt="Zapato 2">
+        <div class="shoe-name">Zapato 2</div>
+        <div class="shoe-price">$60</div>
+        <div class="add-to-cart-button" onclick="addToCart(2)">Agregar al carrito</div>
+      </div>
+      <!-- Agrega más zapatos aquí -->
+    </div>
+    <h2>Carrito de compras</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody id="cart-list">
+        <!-- Aquí se agregarán los productos al carrito -->
+      </tbody>
+    </table>
+    <div id="total-price"></div>
+    <button onclick="checkout()">Pagar con tarjeta de crédito</button>
+    <script>
+      let cart = [];
+      function addToCart(productId) {
+        // Aquí agregarías el producto al carrito us

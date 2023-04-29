@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ventas de laptops Chromebook</title>
+	<style>
+		.carousel-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 400px;
+			width: 600px;
+			margin: auto;
+			overflow: hidden;
+		}
+		.carousel-image {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	</style>
+	<script>
+		var images = ["https://www.example.com/chromebook1.jpg", "https://www.example.com/chromebook2.jpg", "https://www.example.com/chromebook3.jpg"];
+		var index = 0;
+		var intervalId = setInterval(changeImage, 3000);
+
+		function changeImage() {
+			var image = document.querySelector(".carousel-image");
+			image.src = images[index];
+			index++;
+			if (index >= images.length) {
+				index = 0;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="carousel-container">
+		<img class="carousel-image" src="https://www.example.com/chromebook1.jpg">
+	</div>
+	<table style="margin: auto;">
+		<tr>
+			<th>Características</th>
+		</tr>
+		<tr>
+			<td>Pantalla táctil de 14 pulgadas</td>
+		</tr>
+		<tr>
+			<td>Procesador Intel Core i3</td>
+		</tr>
+		<tr>
+			<td>4 GB de RAM</td>
+		</tr>
+		<tr>
+			<td>64 GB de almacenamiento</td>
+		</tr>
+	</table>
+</body>
+</html>

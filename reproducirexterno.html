@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reproductor de Lista M3U</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Reproductor de Lista M3U</h1>
+    <div>
+      <label>Cargar archivo local:</label>
+      <input type="file" id="fileInput" accept=".m3u" />
+      <button id="loadButton">Cargar Lista de Reproducción</button>
+    </div>
+    <div>
+      <label>Enlace externo:</label>
+      <input type="text" id="urlInput" />
+      <button id="playButton">Reproducir</button>
+    </div>
+    <div id="playlist"></div>
+    <div id="playerContainer">
+      <video id="player" controls></video>
+    </div>
+
+    <script src="m3uStreamPlayer.js"></script>
+    <script>
+      var fileInput = document.getElementById('fileInput');
+      var loadButton = document.getElementById('loadButton');
+      var urlInput = document.getElementById('urlInput');
+      var playButton = document.getElementById('playButton');
+      var playlist = document.getElementById('playlist');
+      var player = document.getElementById('player');
+
+      loadButton.addEventListener('click', function() {
+        var file = fileInput.files[0];
+        if (file) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var content = e.target.result;
+            var urls = content.trim().split('\n');
+            for (var i = 0; i < urls.length; i++) {
+              var url = urls[i].trim();
+              if (url) {
+                var item = document.createElement('div');
+                item.classList.add('playlist-item');
+                item.textContent = url;
+                item.addEventListener('click', function() {
+                  player.src = this.textContent;
+                  player.play();
+                });
+                playlist.appendChild(item);
+              }
+            }
+          }
+          reader.readAsText(file);
+        }
+      });
+      
+      playButton.addEventListener('click', function() {
+        var url = urlInput.value.trim();
+        if (url) {
+          var item = document.createElement('div');
+          item.classList.add('playlist-item');
+          item.textContent = url;
+          item.addEventListener('click', function() {
+            player.src = this.textContent;
+            player.play();
+          });
+          playlist.appendChild(item);
+          player.src = url;
+          player.play();
+        }
+      });
+    </script>
+  </body>
+</html>
